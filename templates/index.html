@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Publicaciones</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <!-- Logo de la aplicación -->
+        <img src="/static/logo.png" alt="Logo de la Aplicación">
+
+        <!-- Usuario logueado -->
+        <div class="user-info">Bienvenido, {{ user_email }}</div>
+    </header>
+
+    <main>
+        <h1>Publicaciones</h1>
+        {% if not posts %}
+            <p>No hay publicaciones disponibles.</p>
+        {% else %}
+            {% for post in posts %}
+                <div class="post">
+                    <img src="{{ post.PhotoPath }}" alt="Publicación">
+                    <p><strong>{{ post.UserEmail }}:</strong></p>
+                    <p>{{ post.Description }}</p>
+                    <p><small>Publicado el {{ post.CreatedAt }}</small></p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </main>
+
+    <footer>
+        <button onclick="window.location.href='/upload'">Crear Nueva Publicación</button>
+    </footer>
+</body>
+</html>
